@@ -1,0 +1,44 @@
+package projet;
+
+import java.util.Date;
+
+public class Client_Forfaitaire extends Client
+{
+
+
+    private static final int duree = 2;
+    private static final float montant_initial = 2300;
+    private float montant;
+
+    public float getMontant() {
+        return montant;
+    }
+
+    public void setMontant(float montant) {
+        this.montant = montant;
+    }
+
+    public Client_Forfaitaire()
+    {
+        super();
+        montant = montant_initial;
+    }
+
+    public Client_Forfaitaire(String numTel, String numContrat, String nom, String prenom, Date dateContrat, Adresse adresse, String adresseMail)
+    {
+        super(numTel, numContrat, nom, prenom, dateContrat, adresse, adresseMail);
+        this.montant = montant_initial;
+    }
+
+    public boolean montantEpuise()
+    {
+        return (montant == 0);
+    }
+
+
+
+
+
+
+
+}
