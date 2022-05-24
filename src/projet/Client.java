@@ -32,6 +32,7 @@ public abstract class Client
         this.etat = Etat.ACTIF;
         appelsEntrants = new ArrayList<>();
         appelsSortants = new ArrayList<>();
+	SMSsortants = new ArrayList<>()
     }
     
     
