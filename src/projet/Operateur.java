@@ -25,6 +25,7 @@ public class Operateur
         this.PV = new ArrayList<>();
         this.PC = new HashMap<>();
         this.CL = new ArrayList<>();
+        this.Blocages= new ArrayList<>();
     }
 
     public void initialiserPourcentages()
@@ -78,7 +79,7 @@ public class Operateur
     
     
     /*
-     * verifier si un client est abonné chez cet operateur
+     * verifier si un client est abonnÃ© chez cet operateur
      */
     public boolean clientExiste(Client client)
     {
