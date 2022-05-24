@@ -95,14 +95,37 @@ public class Adresse
         System.out.print("Nom de la rue: ");
         nomRue = scan.nextLine();
 
-        System.out.print("Le code postal: ");
-        CP = scan.nextInt();
-        scan.nextLine();
-
         System.out.print("La ville: ");
         ville = scan.next();
 
         wilaya = Wilaya.saisirWilaya();
+    }
+
+    public static Adresse saisir()
+    {
+        Adresse a = new Adresse();
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("Le code postal: ");
+        a.CP = scan.nextInt();
+        scan.nextLine();
+
+        System.out.print("Nom de la rue: ");
+        a.nomRue = scan.nextLine();
+
+        System.out.print("La ville: ");
+        a.ville = scan.next();
+
+        a.wilaya = Wilaya.saisirWilaya();
+        return a;
+    }
+    
+    public boolean egale(Adresse a)
+    {
+    	return(CP == a.CP
+    			&& nomRue.equalsIgnoreCase(a.getNomRue())
+    			&& ville.equalsIgnoreCase(a.getVille())
+    			&& wilaya.equals(a.getWilaya()));			
     }
 
 }

@@ -8,6 +8,10 @@ public class Bonus
     enum Type {SMS, HEURES, SOLDE};
 
     private Type type;
+    /*
+     * Nombre de SMS, Nombre d heure, solde
+     * a interpreter selon le type du bonus
+     */
     private int bonus;
     private LocalDate dateLimite;
 
@@ -36,7 +40,8 @@ public class Bonus
     }
 
     public Bonus()
-    {}
+    {
+    }
 
     public Bonus(Type type, int bonus, LocalDate dateLimite)
     {
@@ -45,7 +50,5 @@ public class Bonus
         this.dateLimite = dateLimite;
     }
 
-    public void reprendreBonus()
-    {
-    }
+ 
 }
