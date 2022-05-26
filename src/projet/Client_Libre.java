@@ -29,6 +29,11 @@ public class Client_Libre extends Client
 
     }
     
+       public void saisir()
+    {
+     super.saisir();
+ 
+    }
 
 
 
