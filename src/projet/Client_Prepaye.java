@@ -100,4 +100,10 @@ public class Client_Prepaye extends Client
         else
             System.out.println("Impossible de charger cette carte!");
     }
+    
+       public void saisir()
+    {
+     super.saisir();
+ 
+    }
 }
