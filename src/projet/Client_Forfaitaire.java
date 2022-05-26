@@ -36,7 +36,11 @@ public class Client_Forfaitaire extends Client
     }
 
 
-
+   public void saisir()
+    {
+     super.saisir();
+ 
+    }
 
 
 
