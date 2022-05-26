@@ -127,6 +127,60 @@ public abstract class Client
     {
     	return (this.numTel.equals(c.getNumTel()));
     }
+	//we can put those two mb3d fi main so we can use it fi adresse too 
+    static boolean verifChaineAlphabetique(String input)
+    {
+    	String regex = "[\\sA-Za-z]+";
+    	if(input.matches(regex))
+    		return true;
+    	return false;
+    }
+    static boolean verifNumTel(String input)
+    {
+    	String regex = "[0-9]+";
+    	if(input.matches(regex))
+    		return true;
+    	return false;
+    }
+
+    public void saisir()
+    {
+        Scanner scan = new Scanner(System.in);
+        while(true)
+        {
+            System.out.print("Nom:");
+            nom = scan.nextLine();
+            if(verifChaineAlphabetique(nom))
+                break;
+            System.out.println("Les caracteres speciaux ne sont pas autorise. Reessayez");
+        }
+        while(true)
+        {
+            System.out.print("prenom:");
+            prenom = scan.nextLine();
+            if(verifChaineAlphabetique(prenom))
+                break;
+            System.out.println("Les caracteres speciaux ne sont pas autorise. Reessayez");
+        }
+
+        while(true)
+        {
+            System.out.print("numero telephone :0");
+            numTel ="0"+scan.nextLine();
+            if(verifNumTel(numTel) && numTel.length()==10)
+                break;
+            System.out.println("numero non valide  Reessayez");
+        }
+            System.out.print("numero de contrat:");
+            numContrat=scan.nextLine();
+            
+            adresse=new Adresse();
+            adresse.saisir();
+            System.out.print("AdressMail:");
+            adresseMail=scan.nextLine();
+         
+ 
+    }
     
 
     /*public abstract void appeler();
