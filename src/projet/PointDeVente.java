@@ -98,13 +98,13 @@ public class PointDeVente
     public static String saisirNum()
     {
         Scanner scan = new Scanner(System.in);
-        final String regex = "[^0{1}\\d+$]";
+        final String regex = "^0{1}\\d+$";
         System.out.print("Numero de telephone: ");
-        String input =  scan.next();
+        String input =  scan.nextLine();
         while(!input.matches(regex) || input.length() != 10)
         {
             System.out.print("Saisissez un numero valide: ");
-            input =  scan.next();
+            input =  scan.nextLine();
         }
         return input;
     }
