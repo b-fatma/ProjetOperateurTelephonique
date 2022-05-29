@@ -1,7 +1,6 @@
 package projet;
 
 import java.time.LocalDate;
-import project.Client.TypeAbon;
 
 public class Client_Forfaitaire extends Client
 {
