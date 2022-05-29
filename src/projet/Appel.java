@@ -7,19 +7,22 @@ import java.time.LocalTime;
 
 public class Appel
 {
+	public enum TypeAppel{Entrant,Sortant}
     private String numero;
     private LocalDate date;
     private LocalTime heure;
     private Duration duree;
+    private TypeAppel typeAppel;
 
     public Appel() {}
 
-    public Appel(String numero, LocalDate date, LocalTime heure, Duration duree)
+    public Appel(String numero, LocalDate date, LocalTime heure, Duration duree,TypeAppel typeAppel)
     {
         this.numero = numero;
         this.date = date;
         this.heure = heure;
         this.duree = duree;
+        this.typeAppel=typeAppel;
     }
 
     public String getNumero() {
@@ -53,6 +56,14 @@ public class Appel
     public void setDuree(Duration duree) {
         this.duree = duree;
     }
+    public TypeAppel getTypeAppel()
+    {
+    	return typeAppel;
+    }
+    public void setTypeAppel(TypeAppel typeAppel)
+    {
+    	 this.typeAppel=typeAppel;
+    }
 
     public long calculerMontant(int tarifUnite)
     {
@@ -65,5 +76,14 @@ public class Appel
         		&& this.date.isBefore(d2));
     }
 
+    public void affichage()
+    {
+    	System.out.println("numero: "+numero);
+    	System.out.println("heure: "+heure);
+    	System.out.println("Date: "+date);
+    	System.out.println("durré d'appel : "+duree);
+    	System.out.println("Type d'appel: "+typeAppel);
+    	
+    }
 
 }
