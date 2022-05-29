@@ -1,16 +1,17 @@
 package projet;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 public abstract class Client
 {
     public enum Etat {ACTIF, BLOQUE}
     protected String numTel, numContrat, nom, prenom, adresseMail;
-    protected Date dateContrat;
+    protected LocalDate dateContrat;
     protected Adresse adresse;
     protected Etat etat;
+    
 
     protected ArrayList<Appel> appelsEntrants;
     protected ArrayList<Appel> appelsSortants;
@@ -20,19 +21,19 @@ public abstract class Client
     public Client() {
     }
 
-    public Client(String numTel, String numContrat, String nom, String prenom, Date dateContrat, Adresse adresse, String adresseMail)
+    public Client(String numTel, String numContrat, String nom, String prenom,LocalDate dateContrat2, Adresse adresse, String adresseMail)
     {
         this.numTel = numTel;
         this.numContrat = numContrat;
         this.nom = nom;
         this.prenom = prenom;
-        this.dateContrat = dateContrat;
+        this.dateContrat = dateContrat2;
         this.adresse = adresse;
         this.adresseMail = adresseMail;
         this.etat = Etat.ACTIF;
         appelsEntrants = new ArrayList<>();
         appelsSortants = new ArrayList<>();
-	SMSsortants = new ArrayList<>()
+        SMSsortants  = new ArrayList<>();
     }
     
     
@@ -78,12 +79,22 @@ public abstract class Client
 		this.adresseMail = adresseMail;
 	}
 
-	public Date getDateContrat() {
+	
+
+	public LocalDate getDateContrat() {
 		return dateContrat;
 	}
 
-	public void setDateContrat(Date dateContrat) {
+	public void setDateContrat(LocalDate dateContrat) {
 		this.dateContrat = dateContrat;
+	}
+
+	public ArrayList<SMS> getSMSsortants() {
+		return SMSsortants;
+	}
+
+	public void setSMSsortants(ArrayList<SMS> sMSsortants) {
+		SMSsortants = sMSsortants;
 	}
 
 	public Adresse getAdresse() {
@@ -122,65 +133,40 @@ public abstract class Client
     {
         adresse.modifier();
     }
+	
+	
+	public void saisir()
+	{
+		Scanner scan = new Scanner(System.in);
+		
+		this.numTel = PointDeVente.saisirNum();
+		
+		System.out.println("Numero de contrat: ");
+		this.numContrat = scan.next();
+		
+		System.out.println("La date du contrat: ");
+		this.dateContrat = Operateur.saisirDate();
+		
+		System.out.println("Nom: ");
+		this.nom = scan.nextLine();
+		
+		System.out.println("Prenom: ");
+		this.nom = scan.nextLine();
+		
+		System.out.println("Adresse: ");
+		this.adresse = Adresse.saisir();
+		
+		System.out.println("Adresse Mail: ");
+		this.adresseMail = scan.next();		
+	}
+	
     
     public boolean egale(Client c)
     {
     	return (this.numTel.equals(c.getNumTel()));
     }
-	//we can put those two mb3d fi main so we can use it fi adresse too 
-    static boolean verifChaineAlphabetique(String input)
-    {
-    	String regex = "[\\sA-Za-z]+";
-    	if(input.matches(regex))
-    		return true;
-    	return false;
-    }
-    static boolean verifNumTel(String input)
-    {
-    	String regex = "[0-9]+";
-    	if(input.matches(regex))
-    		return true;
-    	return false;
-    }
-
-    public void saisir()
-    {
-        Scanner scan = new Scanner(System.in);
-        while(true)
-        {
-            System.out.print("Nom:");
-            nom = scan.nextLine();
-            if(verifChaineAlphabetique(nom))
-                break;
-            System.out.println("Les caracteres speciaux ne sont pas autorise. Reessayez");
-        }
-        while(true)
-        {
-            System.out.print("prenom:");
-            prenom = scan.nextLine();
-            if(verifChaineAlphabetique(prenom))
-                break;
-            System.out.println("Les caracteres speciaux ne sont pas autorise. Reessayez");
-        }
-
-        while(true)
-        {
-            System.out.print("numero telephone :0");
-            numTel ="0"+scan.nextLine();
-            if(verifNumTel(numTel) && numTel.length()==10)
-                break;
-            System.out.println("numero non valide  Reessayez");
-        }
-            System.out.print("numero de contrat:");
-            numContrat=scan.nextLine();
-            
-            adresse=new Adresse();
-            adresse.saisir();
-            System.out.print("AdressMail:");
-            adresseMail=scan.nextLine();
-         
- 
-    }
+    
+    
     
 
     /*public abstract void appeler();
@@ -188,6 +174,8 @@ public abstract class Client
     public abstract void recevoirAppel();
 
     public abstract boolean enEcheanceDePaiement();*/
+    
+    /*public abstract boolean enInstanceDePaiement();*/
 
 
 

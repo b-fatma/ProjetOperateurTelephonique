@@ -1,20 +1,24 @@
 package projet;
 
-import java.time.LocalDateTime;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 public class Appel
 {
     private String numero;
-    private LocalDateTime date_heure;
-    private int duree;
+    private LocalDate date;
+    private LocalTime heure;
+    private Duration duree;
 
     public Appel() {}
 
-    public Appel(String numero, LocalDateTime date, int duree)
+    public Appel(String numero, LocalDate date, LocalTime heure, Duration duree)
     {
         this.numero = numero;
-        this.date_heure = date;
+        this.date = date;
+        this.heure = heure;
         this.duree = duree;
     }
 
@@ -26,25 +30,39 @@ public class Appel
         this.numero = numero;
     }
 
-    public LocalDateTime getDate_heure() {
-        return date_heure;
-    }
+    public LocalDate getDate() {
+		return date;
+	}
 
-    public void setDate_heure(LocalDateTime date_heure) {
-        this.date_heure = date_heure;
-    }
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
 
-    public int getDuree() {
+	public LocalTime getHeure() {
+		return heure;
+	}
+
+	public void setHeure(LocalTime heure) {
+		this.heure = heure;
+	}
+
+	public Duration getDuree() {
         return duree;
     }
 
-    public void setDuree(int duree) {
+    public void setDuree(Duration duree) {
         this.duree = duree;
     }
 
-    public int calculerMontant(int tarifUnite)
+    public long calculerMontant(int tarifUnite)
     {
-        return (duree * tarifUnite);
+        return (duree.toMinutes() * tarifUnite);
+    }
+    
+    public boolean appartient(LocalDate d1, LocalDate d2)
+    {
+        return (this.date.isAfter(d1)
+        		&& this.date.isBefore(d2));
     }
 
 

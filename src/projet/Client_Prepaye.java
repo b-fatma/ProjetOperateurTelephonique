@@ -1,7 +1,6 @@
 package projet;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.HashMap;
 
 public class Client_Prepaye extends Client
@@ -83,7 +82,7 @@ public class Client_Prepaye extends Client
         this.CartesChargees = new HashMap<>();
     }
 
-    public Client_Prepaye(String numTel, String numContrat, String nom, String prenom, Date dateContrat, Adresse adresse, String adresseMail) {
+    public Client_Prepaye(String numTel, String numContrat, String nom, String prenom, LocalDate dateContrat, Adresse adresse, String adresseMail) {
         super(numTel, numContrat, nom, prenom, dateContrat, adresse, adresseMail);
         this.solde = 0;
         this.CartesChargees = new HashMap<>();
@@ -99,11 +98,5 @@ public class Client_Prepaye extends Client
         }
         else
             System.out.println("Impossible de charger cette carte!");
-    }
-    
-       public void saisir()
-    {
-     super.saisir();
- 
     }
 }

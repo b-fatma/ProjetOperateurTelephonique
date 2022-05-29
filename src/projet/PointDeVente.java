@@ -99,7 +99,7 @@ public class PointDeVente
     {
         Scanner scan = new Scanner(System.in);
         final String regex = "[^0{1}\\d+$]";
-        System.out.print("Numero: ");
+        System.out.print("Numero de telephone: ");
         String input =  scan.next();
         while(!input.matches(regex) || input.length() != 10)
         {
