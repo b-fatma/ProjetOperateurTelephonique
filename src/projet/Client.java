@@ -178,7 +178,7 @@ public abstract class Client
     	adresse.affichage();
     	System.out.println("numContrat: " + this.numContrat);
     	System.out.println("Etat Client: " + this.etat);
-    	
+    	System.out.println("type d'abbonement : "+typeAbon);
     }
     
 
