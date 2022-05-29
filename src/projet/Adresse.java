@@ -120,6 +120,14 @@ public class Adresse
         return a;
     }
     
+    public void affichage()
+    {
+    	System.out.println("Wilaya: "+wilaya );
+    	System.out.println("Ville: "+ville);
+    	System.out.println("Nom Rue: "+nomRue);
+    	System.out.println("Code Postal : "+ CP);
+    	
+    }
     public boolean egale(Adresse a)
     {
     	return(CP == a.CP
