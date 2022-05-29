@@ -1,6 +1,7 @@
 package projet;
 
 import java.time.LocalDate;
+import project.Client.TypeAbon;
 
 public class Client_Forfaitaire extends Client
 {
@@ -35,6 +36,7 @@ public class Client_Forfaitaire extends Client
     {
         super(numTel, numContrat, nom, prenom, dateContrat, adresse, adresseMail);
         this.montant = montant_initial;
+        super.typeAbon=TypeAbon.Forfaitaire;
     }
 
     public boolean montantEpuise()
