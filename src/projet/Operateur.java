@@ -172,6 +172,7 @@ case Prepaye:
     public void saisirClient(Client p)
     {
     	p.saisir();
+	this.ajouterClient(p);
     }
     
     /*
