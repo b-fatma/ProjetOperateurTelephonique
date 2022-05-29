@@ -7,18 +7,19 @@ import java.util.Scanner;
 public abstract class Client
 {
     public enum Etat {ACTIF, BLOQUE}
+    public enum TypeAbon {Forfaitaire,Prepaye,Libre}
     protected String numTel, numContrat, nom, prenom, adresseMail;
     protected LocalDate dateContrat;
     protected Adresse adresse;
     protected Etat etat;
-    
-
-    protected ArrayList<Appel> appelsEntrants;
-    protected ArrayList<Appel> appelsSortants;
+    protected TypeAbon typeAbon;
+    protected ArrayList<Appel> appel;
     protected ArrayList<SMS> SMSsortants;
+    protected ArrayList<LocalDate> dateRappel;
 
 
     public Client() {
+    	this.etat=Etat.ACTIF;
     }
 
     public Client(String numTel, String numContrat, String nom, String prenom,LocalDate dateContrat2, Adresse adresse, String adresseMail)
@@ -31,9 +32,9 @@ public abstract class Client
         this.adresse = adresse;
         this.adresseMail = adresseMail;
         this.etat = Etat.ACTIF;
-        appelsEntrants = new ArrayList<>();
-        appelsSortants = new ArrayList<>();
+        appel = new ArrayList<>();
         SMSsortants  = new ArrayList<>();
+        dateRappel= new ArrayList<>();
     }
     
     
@@ -113,20 +114,22 @@ public abstract class Client
 		this.etat = etat;
 	}
 
-	public ArrayList<Appel> getAppelsEntrants() {
-		return appelsEntrants;
+	public ArrayList<Appel> getAppel() {
+		return appel;
 	}
 
-	public void setAppelsEntrants(ArrayList<Appel> appelsEntrants) {
-		this.appelsEntrants = appelsEntrants;
+	public void setAppel(ArrayList<Appel> appel) {
+		this.appel = appel;
 	}
 
-	public ArrayList<Appel> getAppelsSortants() {
-		return appelsSortants;
+    public TypeAbon getTypeAbon() {
+		return typeAbon;
 	}
-
-	public void setAppelsSortants(ArrayList<Appel> appelsSortants) {
-		this.appelsSortants = appelsSortants;
+    public void setTypeAbon(TypeAbon typeAbon) {
+		this.typeAbon=typeAbon;
+	}
+	public ArrayList<LocalDate> getDateRappel() {
+		return dateRappel;
 	}
 
 	public void modifierAdresse()
@@ -142,7 +145,7 @@ public abstract class Client
 		this.numTel = PointDeVente.saisirNum();
 		
 		System.out.println("Numero de contrat: ");
-		this.numContrat = scan.next();
+		this.numContrat = scan.nextLine();
 		
 		System.out.println("La date du contrat: ");
 		this.dateContrat = Operateur.saisirDate();
@@ -151,7 +154,7 @@ public abstract class Client
 		this.nom = scan.nextLine();
 		
 		System.out.println("Prenom: ");
-		this.nom = scan.nextLine();
+		this.prenom = scan.nextLine();
 		
 		System.out.println("Adresse: ");
 		this.adresse = Adresse.saisir();
@@ -166,13 +169,21 @@ public abstract class Client
     	return (this.numTel.equals(c.getNumTel()));
     }
     
-    
+    public void affichage()
+    {
+    	System.out.println("Nom: " + this.nom);
+    	System.out.println("Prenom: " + this.prenom);
+    	System.out.println("numero telephone: " + this.numTel);
+    	System.out.println("adresse Mail: " + this.adresseMail);
+    	adresse.affichage();
+    	System.out.println("numContrat: " + this.numContrat);
+    	System.out.println("Etat Client: " + this.etat);
+    	
+    }
     
 
     /*public abstract void appeler();
-
     public abstract void recevoirAppel();
-
     public abstract boolean enEcheanceDePaiement();*/
     
     /*public abstract boolean enInstanceDePaiement();*/
