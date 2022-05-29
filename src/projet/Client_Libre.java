@@ -38,6 +38,7 @@ public class Client_Libre extends Client
     {
         super(numTel, numContrat, nom, prenom, dateContrat, adresse, adresseMail);
         this.montant = 0;
+        super.typeAbon=TypeAbon.Libre;
     }
 
     public void appeler()
