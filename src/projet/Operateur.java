@@ -7,12 +7,12 @@ import java.util.Scanner;
 
 import projet.Adresse.Wilaya;
 import projet.Client.Etat;
-
+import project.Client.TypeAbon;
 public class Operateur
 {
     private String nom;
     private ArrayList<PointDeVente> PV;
-    private HashMap<Wilaya, Float> PC;
+    private HashMap<Wilaya,Float> PC;
     private ArrayList<Client> CL;
     private ArrayList<Blocage> Blocages;
 
@@ -146,7 +146,33 @@ public class Operateur
     	else
     		System.out.println("Ce client existe deja!");
     }
-    
+    /*
+     * Saisir Client p
+     */
+    public Client TypeClient()
+    {
+    	TypeAbon typeabon=this.getType();
+    	switch(typeabon) 
+    	{
+    	case Forfaitaire: 
+    		Client p=new Client_Forfaitaire();
+    		return p;
+    	
+	case Libre: 
+		Client p2=new Client_Libre();
+		return p2;
+	
+case Prepaye: 
+	Client p3=new Client_Prepaye();
+	return p3;
+        }
+    	return null;
+    		
+    }
+    public void saisirClient(Client p)
+    {
+    	p.saisir();
+    }
     
     /*
      * Suppression d un client donne
@@ -159,7 +185,7 @@ public class Operateur
     
     
     /*
-     * verifier si un client est abonn� chez cet operateur
+     * verifier si un client est abonné chez cet operateur
      */
     public boolean clientExiste(Client client)
     {
@@ -178,27 +204,117 @@ public class Operateur
     	for(Client client : CL)
     	{
     		if(client.getAdresse().getWilaya().equals(w))
-                System.out.println(client);
+                client.affichage();
     	}
     }
     
-    
+    /* Afficher les numéro de client bloqué et la motif et la date
+    * 
+    */
+   public void affichageListBlocage()
+   {
+   	for(Blocage blocage : Blocages)
+   	{
+   		blocage.affichage();
+   	}
+   }
+   
+   /* Afficher les numéro de client bloqué et la motif et la date
+   * 
+   */
+  public TypeAbon getType()
+  {
+	
+	  while(true) {
+		  System.out.println("Entrez un type valide ");
+		  Scanner scan=new Scanner(System.in);
+          String typAb=scan.next();
+switch(typAb) {
+case "Forfaitaire":
+	return TypeAbon.Forfaitaire;
+case "Libre":
+	return TypeAbon.Libre;
+case "Prepaye":
+	return TypeAbon.Prepaye;
+	
+               }
+
+                  }
+  }
+  
+  public void affichageParType(TypeAbon typ)
+  {
+	  for(Client client : CL)
+  	{
+  		if(client.getTypeAbon().equals(typ))
+  		{
+  			 client.affichage();
+
+  		}   
+  	}
+  }
+  
+  
+  
+  
+  
+  /*
+   * 
+   */
+  public void affochageListRelance()
+  {
+	  for(Client client : CL)
+  	{
+  		if(client.getDateRappel().size()>0)
+  		{
+  			System.out.println(client);
+  		}   
+  	}
+  }
+  /*
+   * rechercher numero et affiche List d'appel Sortant et Entrant
+   */
+  
+  public void afficheAppel(String numeTel,LocalDate date1, LocalDate date2)
+  {
+	  long duree=0;
+	  
+	  ArrayList<Appel> appel=chercherClient(numeTel).getAppel();
+	  for(Appel ap : appel)
+  	{
+  		if(ap.appartient(date1, date2))
+  		{
+  			ap.affichage();
+  			duree=duree+ap.getDuree().getSeconds();
+  		}		   
+  	}
+	
+	 System.out.println(Duration.ofSeconds(duree));
+	 
+  }
+  
     /*
      * Recherche et affichage d un numero donne
      */
-    public void afficherInfoNum(String numTel)
+    public Client chercherClient(String numTel)
     {
-    	boolean trouve = false;
     	for(Client client : CL)
     	{
     		if(client.getNumTel().equals(numTel))
     		{
-    			System.out.println(client);
-    			trouve = true;
+    			return client;
     		}		   
     	}
-    	if(!trouve)
+    	
+    	return null;
+    }
+    public void afficherInfoNum(String numTel)
+    {
+    	
+        if(chercherClient(numTel)==null)
     		System.out.println("Ce numero n existe pas!");
+        else
+        	chercherClient(numTel).affichage();
     }
     
     
