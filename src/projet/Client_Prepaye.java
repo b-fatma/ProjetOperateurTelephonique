@@ -2,7 +2,6 @@ package projet;
 
 import java.time.LocalDate;
 import java.util.HashMap;
-
 public class Client_Prepaye extends Client
 {
     public class CarteDeRecharge
@@ -86,7 +85,9 @@ public class Client_Prepaye extends Client
         super(numTel, numContrat, nom, prenom, dateContrat, adresse, adresseMail);
         this.solde = 0;
         this.CartesChargees = new HashMap<>();
+        super.typeAbon=TypeAbon.Prepaye;
     }
+    
 
     public void recharger(CarteDeRecharge c)
     {
