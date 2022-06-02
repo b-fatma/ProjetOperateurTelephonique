@@ -41,7 +41,7 @@ public class Operateur
     public void afficherClients()
     {
     	for(Client c : CL)
-    		  c.afficher()
+    		 System.out.println(c);
     }
     
     public void afficherPointsDeVente()
@@ -53,7 +53,7 @@ public class Operateur
     public void afficherBlocages()
     {
     	for(Blocage b : Blocages)
-    		b.afficher();
+    		System.out.println(b);
     }
     
     public void afficherPourcentages()
