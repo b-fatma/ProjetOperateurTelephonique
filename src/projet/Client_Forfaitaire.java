@@ -28,14 +28,17 @@ public class Client_Forfaitaire extends Client
     public Client_Forfaitaire()
     {
         super();
+        super.delai_paiement = 30;
+        super.setTypeAbon(Abonnement.FORFAITAIRE);
         montant = montant_initial;
     }
 
-    public Client_Forfaitaire(String numTel, String numContrat, String nom, String prenom, LocalDate dateContrat, Adresse adresse, String adresseMail)
+    public Client_Forfaitaire(String numTel, String numContrat, String nom, String prenom, LocalDate dateContrat, Adresse adresse, String adresseMail, LocalDate debut_forfait)
     {
         super(numTel, numContrat, nom, prenom, dateContrat, adresse, adresseMail);
+        super.delai_paiement = 30;
+        super.setTypeAbon(Abonnement.FORFAITAIRE);
         this.montant = montant_initial;
-        super.typeAbon=TypeAbon.Forfaitaire;
     }
 
     public boolean montantEpuise()
@@ -43,11 +46,27 @@ public class Client_Forfaitaire extends Client
         return (montant == 0);
     }
     
+    public boolean echeanceDePaiement()
+    {
+    	return(LocalDate.now().isAfter(super.dateContrat.plusDays(delai_paiement).plusMonths(duree)));
+    }
     
+    
+    public boolean instanceDePaiement()
+    {
+    	return(LocalDate.now().isAfter(super.dateContrat.plusMonths(duree)));
+    }
 
-
-
-
+    public String Facture()
+    {
+    	return ("\n _______ FACTURE ______ \n"
+    			+"Date: " + LocalDate.now().toString()
+    			+"Numero de telephone: " + getNumTel()
+    			+"Abonnement: " + getTypeAbon()
+    			+"Numero de contrat: " + getNumContrat()
+    			+"Date debut de forfait: " + getDateContrat().toString()
+    			+"Montant a payer: " + montant_initial +"\n");
+    }
 
 
 

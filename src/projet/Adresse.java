@@ -80,7 +80,7 @@ public class Adresse
     @Override
     public String toString()
     {
-        return ("Adresse: " + CP + "\t" + nomRue + "\t" + ville + "\t" + wilaya);
+        return (CP + "\t" + nomRue + "\t" + ville + "\t" + wilaya);
     }
 
     public void modifier()
@@ -101,7 +101,7 @@ public class Adresse
         wilaya = Wilaya.saisirWilaya();
     }
 
-    public static Adresse saisir()
+    /*public static Adresse saisir()
     {
         Adresse a = new Adresse();
         Scanner scan = new Scanner(System.in);
@@ -118,16 +118,30 @@ public class Adresse
 
         a.wilaya = Wilaya.saisirWilaya();
         return a;
+    }*/
+    
+    public void saisir()
+    {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("Le code postal: ");
+        this.CP = scan.nextInt();
+        scan.nextLine();
+
+        System.out.print("Nom de la rue: ");
+        this.nomRue = scan.nextLine();
+
+        System.out.print("La ville: ");
+        this.ville = scan.next();
+
+        this.wilaya = Wilaya.saisirWilaya();
     }
     
-    public void affichage()
+    public void afficher()
     {
-    	System.out.println("Wilaya: "+wilaya );
-    	System.out.println("Ville: "+ville);
-    	System.out.println("Nom Rue: "+nomRue);
-    	System.out.println("Code Postal : "+ CP);
-    	
+    	System.out.println(this.toString());
     }
+    
     public boolean egale(Adresse a)
     {
     	return(CP == a.CP

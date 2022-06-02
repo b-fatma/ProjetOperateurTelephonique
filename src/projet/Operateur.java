@@ -3,11 +3,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Scanner;
 
 import projet.Adresse.Wilaya;
-import projet.Client.Etat;
-import project.Client.TypeAbon;
+
+
 public class Operateur
 {
     private String nom;
@@ -62,10 +63,10 @@ public class Operateur
     
     
     
-    /* GESTION DES POINTS DE VENTES */
+/* GESTION DES POINTS DE VENTES */
     
     
-    /*
+    /* REVIEWED
      * ajouter un point de vente (par programme)
      */
     public void ajouterPV(PointDeVente p)
@@ -76,7 +77,7 @@ public class Operateur
         	System.out.println("Ce point de vente existe deja!");
     }
     
-    /*
+    /* REVIEWED
      * verifier si un point de vente existe chez cet operateur
      */
     public boolean pointVenteExiste(PointDeVente pointDeVente)
@@ -87,56 +88,88 @@ public class Operateur
     	return false;
     }
     
-    /*
+    /* REVIEWED
      * Modifier le type d'un point de vente donne
      */
     public void modifierTypePV(PointDeVente pointDeVente)
     {
-    	for(PointDeVente p : PV)
-    		if(pointDeVente.egale(p))
-    			p.modifierType();
-    		else
-    			System.out.println("Ce point de vente n existe pas! ");
+    	Iterator<PointDeVente> i = PV.iterator();
+    	PointDeVente j = null;
+    	while(i.hasNext())
+    	{
+    	    j = i.next();
+    	    if(j.egale(pointDeVente))
+    	    {
+    	    	j.modifierType();
+    	    	System.out.println("Type modifié avec succès.\n");
+    	    	return;
+    	    }
+    	}
+    	System.out.println("Echec! Point de vente non trouvé.\n");
     }
     
-    /*
+    /* REVIEWED
      * Modifier le numero de telephone d un point de vente donne
      */
     public void modifierNumPV(PointDeVente pointDeVente)
     {
-    	for(PointDeVente p : PV)
-    		if(pointDeVente.egale(p))
-    			p.modifierNum();
-    		else
-    			System.out.println("Ce point de vente n existe pas! ");
+    	Iterator<PointDeVente> i = PV.iterator();
+    	PointDeVente j = null;
+    	while(i.hasNext())
+    	{
+    	    j = i.next();
+    	    if(j.egale(pointDeVente))
+    	    {
+    	    	j.modifierNum();
+    	    	System.out.println("Numéro modifié avec succès.\n");
+    	    	return;
+    	    }
+    	}
+    	System.out.println("Echec! Point de vente non trouvé.\n");
     }
     
-    /*
+    /* REVIEWED
      * Modifier l adresse d un point de vente donne
      */
     public void modifierAdressePV(PointDeVente pointDeVente)
     {
-    	for(PointDeVente p : PV)
-    		if(pointDeVente.egale(p))
-    			p.modifierAdresse();
-    		else
-    			System.out.println("Ce point de vente n existe pas! ");
+    	Iterator<PointDeVente> i = PV.iterator();
+    	PointDeVente j = null;
+    	while(i.hasNext())
+    	{
+    	    j = i.next();
+    	    if(j.egale(pointDeVente))
+    	    {
+    	    	j.modifierAdresse();
+    	    	System.out.println("Adresse modifiée avec succès.\n");
+    	    	return;
+    	    }
+    	}
+    	System.out.println("Echec! Point de vente non trouvé.\n");
     }
     
-    /*
+    /* REVIEWED
      * Supprimer un point de vente s il existe
      */
     public void supprimerPV(PointDeVente pointDeVente)
     {
-        if(!PV.remove(pointDeVente))
-        	System.out.print("Ce point de vente n existe pas"); 	
-    }   
+    	for(int i = 0; i < PV.size(); i++)
+    	{
+    		if(PV.get(i).egale(pointDeVente))
+    		{
+    			PV.remove(i);
+    			System.out.println("Point de vente supprimé avec succès.\n");
+    			return;
+    		}
+    	}
+    	System.out.println("Echec! Point de vente non trouvé.\n"); 	
+    }    
     
    
     
     /* GESTION DES CLIENTS */
     
-    /*
+    /* REVIEWED
      * Methode qui permet d ajouter un client 
      */
     public void ajouterClient(Client client)
@@ -146,47 +179,53 @@ public class Operateur
     	else
     		System.out.println("Ce client existe deja!");
     }
-    /*
-     * Saisir Client p
+    
+    
+    /* REVIEWED
+     * Méthode qui retourne le client associé à un numéro donné
      */
-    public Client TypeClient()
+    public Client numeroToClient(String numTel)
     {
-    	TypeAbon typeabon=this.getType();
-    	switch(typeabon) 
+    	for(Client client : CL)
     	{
-    	case Forfaitaire: 
-    		Client p=new Client_Forfaitaire();
-    		return p;
-    	
-	case Libre: 
-		Client p2=new Client_Libre();
-		return p2;
-	
-case Prepaye: 
-	Client p3=new Client_Prepaye();
-	return p3;
-        }
+    		if(client.getNumTel().equals(numTel))
+    			return client;		   
+    	}
     	return null;
-    		
-    }
-    public void saisirClient(Client p)
-    {
-    	p.saisir();
-	this.ajouterClient(p);
     }
     
-    /*
-     * Suppression d un client donne
+    
+    /* REVIEWED
+     * Demande de type 
+     * + création et saisie client 
+     * + ajout client 
      */
-    public void supprimerClient(Client client)
+    public void AjoutClientParSaisie()
     {
-    	if(!CL.remove(client))
-    		System.out.println("Ce client n existe pas");
+    	Abonnement type = Abonnement.saisirAbonnement();
+    	Client c  = null;
+    	switch(type)
+    	{
+    	case FORFAITAIRE:
+    		c = new Client_Forfaitaire();
+    	    break;
+    	case LIBRE:
+    		c = new Client_Libre();
+    	    break;
+    	case PREPAYE:
+    		c = new Client_Prepaye();
+    	    break;
+    	}
+    	c.saisir();
+    	this.ajouterClient(c);
     }
     
     
-    /*
-     * verifier si un client est abonnÃ© chez cet operateur
+    
+    
+    
+    /* REVIEWED
+     * verifier si un client est abonné chez cet operateur
      */
     public boolean clientExiste(Client client)
     {
@@ -196,7 +235,7 @@ case Prepaye:
     	return false;
     }
     
-    /*
+    /* REVIEWED
      * Afficher les clients d une wilaya donnee 
      * (par rapport a l adresse)
      */
@@ -205,120 +244,155 @@ case Prepaye:
     	for(Client client : CL)
     	{
     		if(client.getAdresse().getWilaya().equals(w))
-                client.affichage();
+                client.afficher();
     	}
     }
     
-    /* Afficher les numÃ©ro de client bloquÃ© et la motif et la date
-    * 
-    */
-   public void affichageListBlocage()
-   {
-   	for(Blocage blocage : Blocages)
-   	{
-   		blocage.affichage();
-   	}
-   }
-   
-   /* Afficher les numÃ©ro de client bloquÃ© et la motif et la date
-   * 
-   */
-  public TypeAbon getType()
-  {
-	
-	  while(true) {
-		  System.out.println("Entrez un type valide ");
-		  Scanner scan=new Scanner(System.in);
-          String typAb=scan.next();
-switch(typAb) {
-case "Forfaitaire":
-	return TypeAbon.Forfaitaire;
-case "Libre":
-	return TypeAbon.Libre;
-case "Prepaye":
-	return TypeAbon.Prepaye;
-	
-               }
-
-                  }
-  }
-  
-  public void affichageParType(TypeAbon typ)
-  {
-	  for(Client client : CL)
-  	{
-  		if(client.getTypeAbon().equals(typ))
-  		{
-  			 client.affichage();
-
-  		}   
-  	}
-  }
-  
-  
-  
-  
-  
-  /*
-   * 
-   */
-  public void affochageListRelance()
-  {
-	  for(Client client : CL)
-  	{
-  		if(client.getDateRappel().size()>0)
-  		{
-  			System.out.println(client);
-  		}   
-  	}
-  }
-  /*
-   * rechercher numero et affiche List d'appel Sortant et Entrant
-   */
-  
-  public void afficheAppel(String numeTel,LocalDate date1, LocalDate date2)
-  {
-	  long duree=0;
-	  
-	  ArrayList<Appel> appel=chercherClient(numeTel).getAppel();
-	  for(Appel ap : appel)
-  	{
-  		if(ap.appartient(date1, date2))
-  		{
-  			ap.affichage();
-  			duree=duree+ap.getDuree().getSeconds();
-  		}		   
-  	}
-	
-	 System.out.println(Duration.ofSeconds(duree));
-	 
-  }
-  
-    /*
-     * Recherche et affichage d un numero donne
+    /* REVIEWED
+     * Afficher les clients abonnés à un type donné
      */
-    public Client chercherClient(String numTel)
+    
+    public void afficherParType(Abonnement type)
+    {
+    	for(Client client : CL)
+        {
+    		if(client.getTypeAbon().equals(type))
+    			client.afficher();  
+    	}
+    }
+    
+    /* REVIEWED
+    * Afficher le numéro des clients bloqués, le motif et la date du blocage
+    */
+    public void afficherListeBlocages()
+    {
+    	for(Blocage blocage : Blocages)
+    		blocage.afficher();
+    }
+    
+    
+    /* REVIEWED
+     * La liste des numéros relancés pour paiement ou rechargement avec les dates de rappel
+     */
+    public void afficherListeRappels()
     {
     	for(Client client : CL)
     	{
-    		if(client.getNumTel().equals(numTel))
+    		if(client.getDatesRappels().size()>0)
     		{
-    			return client;
-    		}		   
+    			client.afficher();
+    			System.out.println("Les dates de relancement: ");
+    			client.afficherRappels();
+    		}   
     	}
-    	
-    	return null;
     }
-    public void afficherInfoNum(String numTel)
+   
+    
+    /* REVIEWED 
+     * Afficher les appels d'un numero donné (sans préciser la durée)
+     */
+    public void afficherAppels(String numero)
     {
-    	
-        if(chercherClient(numTel)==null)
+    	Client c = this.numeroToClient(numero);
+    	if(c != null)
+    		c.afficherAppels();
+    	else
+    		System.out.println("Ce client n existe pas");
+    }
+    
+    /* REVIEWED 
+     * Afficher les appels entre 2 dates d'un numero donné 
+     */
+    public void afficherAppels(String numero, LocalDate d1, LocalDate d2)
+    {
+    	Client c = this.numeroToClient(numero);
+    	if(c != null)
+    		c.afficherAppels(d1, d2);
+    	else
+    		System.out.println("Ce client n existe pas");
+    }
+   
+    
+    /* REVIEWED 
+     * Suppression d un client donne
+     */
+    public void supprimerClient(String numero)
+    {
+    	Client c = this.numeroToClient(numero);
+    	if(c == null)
+    		System.out.println("Ce client n existe pas");
+    	else
+    	{
+    		CL.remove(c);
+    		System.out.println("Client supprimé avec succès.");
+    	}
+    }
+     
+    /*
+     * Afficher les inforomations d'un numéro donné
+     */
+    public void afficherInfoNum(String numero)
+    {
+    	if(this.numeroToClient(numero) == null)
     		System.out.println("Ce numero n existe pas!");
         else
-        	chercherClient(numTel).affichage();
+        	this.numeroToClient(numero).afficher();
     }
     
+    /*
+     * Afficher tous les numéros arrivés à échéance de paiement
+     */
+    public void afficherNumeros_echeance()
+    {
+    	int cmp = 1;
+    	for(Client c : CL)
+    	{
+    		if(c.echeanceDePaiement())
+    		{
+    			System.out.println("\nNumero N°" + cmp + ": " + c.getNumTel());	
+    		}
+    	}
+    }
     
+    /*
+     * Afficher toutes les factures en instance de paiement
+     */
+    public void afficherFactures_instance()
+    {
+    	for(Client c : CL)
+    	{
+    		if(c.instanceDePaiement())
+    		{
+    			System.out.println(c.Facture());	
+    		}
+    	}
+    }
+    
+    /*
+     * Etablir facture pour un numéro donné
+     */
+    public void etablirFacture(String num)
+    {
+    	if(this.numeroToClient(num) == null)
+    		System.out.println("Ce numero n existe pas!");
+        else
+        	System.out.println(this.numeroToClient(num).Facture());
+    }
+    
+    /*
+     * Relancer les numéros pour les rechargements/ paiements
+     */
+    public void relancerNumeros()
+    {
+    	for(Client c : CL)
+    	{
+    		if(c.instanceDePaiement() && c.getDatesRappels().size() < 3)
+    		{
+    			c.relancer();
+    			System.out.println("Numero " + c.getNumTel() + " relancé");
+    		}
+    	}
+    }
     
     /* GESTION DES POURCENTAGES DES COUVERTURES */
     
@@ -358,7 +432,7 @@ case "Prepaye":
 	public static LocalDate saisirDate()
 	{
 		Scanner scan = new Scanner(System.in);
-        System.out.println("Entrez la date (jj/mm/aaaa): ");
+        System.out.print("(jj/mm/aaaa): ");
 		String dateSaisie = scan.next();
 		while(!dateSaisie.matches("\\d{2}/\\d{2}/\\d{4}"))
 		{
@@ -367,10 +441,5 @@ case "Prepaye":
 		}
 		return stringToDate(dateSaisie);
 	}  
-    
-    
-    
-    
-    
-
 }
+

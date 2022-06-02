@@ -91,20 +91,21 @@ public class PointDeVente
         numero = PointDeVente.saisirNum();
 
         type = Type.saisirType();
-
-        adresse = Adresse.saisir();
+        
+        adresse = new Adresse();
+        adresse.saisir();
     }
     
     public static String saisirNum()
     {
         Scanner scan = new Scanner(System.in);
-        final String regex = "^0{1}\\d+$";
+        final String regex = "^0\\d+";
         System.out.print("Numero de telephone: ");
-        String input =  scan.nextLine();
+        String input =  scan.next();
         while(!input.matches(regex) || input.length() != 10)
         {
             System.out.print("Saisissez un numero valide: ");
-            input =  scan.nextLine();
+            input =  scan.next();
         }
         return input;
     }

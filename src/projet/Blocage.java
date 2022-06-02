@@ -1,6 +1,7 @@
 package projet;
 
 import java.time.LocalDate;
+
 public class Blocage 
 {
 	private String numTel;
@@ -37,16 +38,19 @@ public class Blocage
 	public void setMotifBlocage(String motifBlocage) {
 		this.motifBlocage = motifBlocage;
 	}
+
+	@Override
+	public String toString() {
+		return "Blocage [Numero: " + numTel + ", Date de blocage: " + dateBlocage + ", Motif: " + motifBlocage + "]";
+	}
+	
+	public void afficher()
+	{
+		System.out.println(this.toString());
+	}
 	
 	
-   public void affichage()
-   {
-	   System.out.println("numero telephone: "+numTel);
-	   System.out.println("Date de blocgae : "+dateBlocage);
-	   System.out.println("motif de blocgae: "+motifBlocage);
-	   
-	   
-	   
-   }
+	
+	
 
 }
