@@ -164,6 +164,18 @@ public class Operateur
     	}
     	System.out.println("Echec! Point de vente non trouvé.\n"); 	
     }    
+        /*
+     * Method qui retourne pointDeVente par nom
+     */
+    public PointDeVente nomToPointDeVente(String nom)
+    {
+    	for(PointDeVente pointDeVente : PV)
+    	{
+    		if(pointDeVente.getNom().equals(nom))
+    			return pointDeVente;		   
+    	}
+    	return null;
+    }
     
    
     
