@@ -23,8 +23,8 @@ public class Operateur
     {
 
     }
-    
-    
+
+
 
     public String getNom() {
 		return nom;
@@ -57,7 +57,7 @@ public class Operateur
     public void afficherClients()
     {
     	for(Client c : CL)
-    		System.out.println(c);
+    		 System.out.println(c);
     }
     
     public void afficherPointsDeVente()
@@ -120,11 +120,11 @@ public class Operateur
     	    if(j.getNom().equals(nom))
     	    {
     	    	j.modifierType();
-    	    	System.out.println("Type modifié avec succès.\n");
+    	    	System.out.println("Type modifiÃ© avec succÃ¨s.\n");
     	    	return;
     	    }
     	}
-    	System.out.println("Echec! Point de vente non trouvé.\n");
+    	System.out.println("Echec! Point de vente non trouvÃ©.\n");
     }
     
     /* REVIEWED
@@ -140,11 +140,11 @@ public class Operateur
     	    if(j.getNom().equals(nom))
     	    {
     	    	j.modifierNum();
-    	    	System.out.println("Numéro modifié avec succès.\n");
+    	    	System.out.println("NumÃ©ro modifiÃ© avec succÃ¨s.\n");
     	    	return;
     	    }
     	}
-    	System.out.println("Echec! Point de vente non trouvé.\n");
+    	System.out.println("Echec! Point de vente non trouvÃ©.\n");
     }
     
     /* REVIEWED
@@ -160,11 +160,11 @@ public class Operateur
     	    if(j.getNom().equals(nom))
     	    {
     	    	j.modifierAdresse();
-    	    	System.out.println("Adresse modifiée avec succès.\n");
+    	    	System.out.println("Adresse modifiï¿½e avec succï¿½s.\n");
     	    	return;
     	    }
     	}
-    	System.out.println("Echec! Point de vente non trouvé.\n");
+    	System.out.println("Echec! Point de vente non trouvï¿½.\n");
     }
     
     /* REVIEWED
@@ -177,14 +177,13 @@ public class Operateur
     		if(PV.get(i).getNom().equals(nom))
     		{
     			PV.remove(i);
-    			System.out.println("Point de vente supprimé avec succès.\n");
+    			System.out.println("Point de vente supprimÃ© avec succÃ¨s.\n");
     			return;
     		}
     	}
-    	System.out.println("Echec! Point de vente non trouvé.\n"); 	
-    }
-    
-    /*
+    	System.out.println("Echec! Point de vente non trouvÃ©.\n"); 	
+    }    
+        /*
      * Method qui retourne pointDeVente par nom
      */
     public PointDeVente nomToPointDeVente(String nom)
@@ -214,7 +213,7 @@ public class Operateur
     
     
     /* REVIEWED
-     * Méthode qui retourne le client associé à un numéro donné
+     * Mï¿½thode qui retourne le client associï¿½ ï¿½ un numï¿½ro donnï¿½
      */
     public Client numeroToClient(String numTel)
     {
@@ -229,7 +228,7 @@ public class Operateur
     
     /* REVIEWED
      * Demande de type 
-     * + création et saisie client 
+     * + crÃ©ation et saisie client 
      * + ajout client 
      */
     public void AjoutClientParSaisie()
@@ -257,7 +256,7 @@ public class Operateur
     
     
     /* REVIEWED
-     * verifier si un client est abonné chez cet operateur
+     * verifier si un client est abonnÃ© chez cet operateur
      */
     public boolean clientExiste(Client client)
     {
@@ -281,7 +280,7 @@ public class Operateur
     }
     
     /* REVIEWED
-     * Afficher les clients abonnés à un type donné
+     * Afficher les clients abonnÃ©s Ã  un type donnÃ©
      */
     
     public void afficherParType(Abonnement type)
@@ -294,7 +293,7 @@ public class Operateur
     }
     
     /* REVIEWED
-    * Afficher le numéro des clients bloqués, le motif et la date du blocage
+    * Afficher le numÃ©ro des clients bloquÃ©s, le motif et la date du blocage
     */
     public void afficherListeBlocages()
     {
@@ -304,7 +303,7 @@ public class Operateur
     
     
     /* REVIEWED
-     * La liste des numéros relancés pour paiement ou rechargement avec les dates de rappel
+     * La liste des numÃ©ros relancÃ©s pour paiement ou rechargement avec les dates de rappel
      */
     public void afficherListeRappels()
     {
@@ -321,7 +320,7 @@ public class Operateur
    
     
     /* REVIEWED 
-     * Afficher les appels d'un numero donné (sans préciser la durée)
+     * Afficher les appels d'un numero donnÃ© (sans prÃ©ciser la durÃ©e)
      */
     public void afficherAppels(String numero)
     {
@@ -333,7 +332,7 @@ public class Operateur
     }
     
     /* REVIEWED 
-     * Afficher les appels entre 2 dates d'un numero donné 
+     * Afficher les appels entre 2 dates d'un numero donnÃ© 
      */
     public void afficherAppels(String numero, LocalDate d1, LocalDate d2)
     {
@@ -356,12 +355,12 @@ public class Operateur
     	else
     	{
     		CL.remove(c);
-    		System.out.println("Client supprimé avec succès.");
+    		System.out.println("Client supprimÃ© avec succÃ¨s.");
     	}
     }
      
     /*
-     * Afficher les inforomations d'un numéro donné
+     * Afficher les inforomations d'un numÃ©ro donnÃ©
      */
     public void afficherInfoNum(String numero)
     {
@@ -372,7 +371,7 @@ public class Operateur
     }
     
     /*
-     * Afficher tous les numéros arrivés à échéance de paiement
+     * Afficher tous les numÃ©ros arrivÃ©s Ã  Ã©chÃ©ance de paiement
      */
     public void afficherNumeros_echeance()
     {
@@ -381,7 +380,7 @@ public class Operateur
     	{
     		if(c.echeanceDePaiement())
     		{
-    			System.out.println("\nNumero N°" + cmp + ": " + c.getNumTel());	
+    			System.out.println("\nNumero NÂ°" + cmp + ": " + c.getNumTel());	
     		}
     	}
     }
@@ -401,7 +400,7 @@ public class Operateur
     }
     
     /*
-     * Etablir facture pour un numéro donné
+     * Etablir facture pour un numÃ©ro donnÃ©
      */
     public void etablirFacture(String num)
     {
@@ -412,7 +411,7 @@ public class Operateur
     }
     
     /*
-     * Relancer les numéros pour les rechargements/ paiements
+     * Relancer les numÃ©ros pour les rechargements/ paiements
      */
     public void relancerNumeros()
     {
@@ -421,7 +420,7 @@ public class Operateur
     		if(c.instanceDePaiement() && c.getDatesRappels().size() < 3)
     		{
     			c.relancer();
-    			System.out.println("Numero " + c.getNumTel() + " relancé");
+    			System.out.println("Numero " + c.getNumTel() + " relancÃ©");
     		}
     	}
     }
@@ -474,7 +473,8 @@ public class Operateur
 		return stringToDate(dateSaisie);
 	}  
 	
-	/* GESTION DES APPELS */
+	
+/* GESTION DES APPELS */
 	
 	public void ajouterAppelSortant(String num)
 	{
@@ -497,7 +497,7 @@ public class Operateur
 			}	
 		}
 		else
-			System.out.println("Ce numéro n existe pas!");
+			System.out.println("Ce numÃ©ro n existe pas!");
 	}
 	
 	public void ajouterAppelEntrant(String num)
@@ -511,7 +511,24 @@ public class Operateur
 			c.recevoirAppel(appel);
 		}
 		else
-			System.out.println("Ce numéro n existe pas!");
+			System.out.println("Ce numÃ©ro n existe pas!");
+	}
+
+
+//GESTION DES SMS
+	public void ajouterSMS(String numTel)
+	{
+
+		Client c = this.numeroToClient(numTel);
+		if(c != null)
+		{
+		SMS sms=new SMS();
+	    sms.saisir();
+		sms.setNum_exped(numTel);
+		c.envoyerSMS(sms);
+		}
+		else
+			System.out.println("Ce numÃ©ro n existe pas!");
 	}
 }
 
