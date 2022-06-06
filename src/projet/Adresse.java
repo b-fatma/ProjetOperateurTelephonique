@@ -78,9 +78,9 @@ public class Adresse
     }
 
     @Override
-    public String toString()
+     public String toString()
     {
-        return (CP + "\t" + nomRue + "\t" + ville + "\t" + wilaya);
+        return ("\n Code Postal : "+ CP + "  nom de Rue : " + nomRue + "   ville: " + ville + "   Wilaya : " + wilaya);
     }
 
     public void modifier()
