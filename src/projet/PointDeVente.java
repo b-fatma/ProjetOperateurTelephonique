@@ -52,7 +52,7 @@ public class PointDeVente
 
     @Override
 	public String toString() {
-		return "PointDeVente [nom=" + nom + ", numero=" + numero + ", adresse=" + adresse + ", type=" + type + "]";
+		return "PointDeVente \n [nom=" + nom + "\n numero=" + numero + "\n adresse=" + adresse + "\n type=" + type + "]";
 	}
 
 	public String getNom() {
