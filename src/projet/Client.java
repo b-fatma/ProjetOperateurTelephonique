@@ -193,11 +193,10 @@ public abstract class Client
     
     @Override
 	public String toString() {
-		return "Numero de telephone: " + numTel + ", Numero de contrat: " + numContrat + ", Nom: " + nom + ", Prénom: " + prenom
-				+ ", Adresse mail: " + adresseMail + ", Date de fin de contrat: " + dateContrat + ", Adresse: " + adresse + ", Etat: "
-				+ etat + ", Abonnement: " + typeAbon + "]";
+		return " [Numero de telephone: " + numTel + "\n Numero de contrat: " + numContrat + "\n Nom: " + nom + "\n Prénom: " + prenom
+				+ "\n Adresse mail: " + adresseMail + "\n Date de fin de contrat: " + dateContrat + "\n Adresse: " + adresse + "\n Etat: "
+				+ etat + "\n Abonnement: " + typeAbon + "]\n";
 	}
-
 	public void afficher()
 	{
 		System.out.println(this.toString());
