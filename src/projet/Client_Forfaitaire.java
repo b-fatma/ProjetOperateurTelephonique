@@ -35,7 +35,7 @@ public class Client_Forfaitaire extends Client
         montant = montant_initial;
     }
 
-    public Client_Forfaitaire(String numTel, String numContrat, String nom, String prenom, LocalDate dateContrat, Adresse adresse, String adresseMail, LocalDate debut_forfait)
+    public Client_Forfaitaire(String numTel, String numContrat, String nom, String prenom, LocalDate dateContrat, Adresse adresse, String adresseMail)
     {
         super(numTel, numContrat, nom, prenom, dateContrat, adresse, adresseMail);
         super.delai_paiement = 30;
@@ -62,12 +62,12 @@ public class Client_Forfaitaire extends Client
     public String Facture()
     {
     	return ("\n _______ FACTURE ______ \n"
-    			+"Date: " + LocalDate.now().toString()
-    			+"Numero de telephone: " + getNumTel()
-    			+"Abonnement: " + getTypeAbon()
-    			+"Numero de contrat: " + getNumContrat()
-    			+"Date debut de forfait: " + getDateContrat().toString()
-    			+"Montant a payer: " + montant_initial +"\n");
+    			+"\nDate: " + LocalDate.now().toString()
+    			+"\nNumero de telephone: " + getNumTel()
+    			+"\nAbonnement: " + getTypeAbon()
+    			+"\nNumero de contrat: " + getNumContrat()
+    			+"\nDate debut de forfait: " + getDateContrat().toString()
+    			+"\nMontant a payer: " + montant_initial +"\n");
     }
     
     public void appeler(int tarif, Appel appel)

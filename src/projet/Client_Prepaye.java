@@ -62,12 +62,12 @@ public class Client_Prepaye extends Client
     public String Facture()
     {
     	return ("\n _______ FACTURE ______ \n"
-    			+"Date: " + LocalDate.now().toString()
-    			+"Numero de telephone: " + getNumTel()
-    			+"Abonnement: " + getTypeAbon()
-    			+"Numero de contrat: " + getNumContrat()
-    			+"Date debut de forfait: " + getDateContrat().toString()
-    			+"Date de la derniere recharge: " + this.derniereDateRecharge().toString()
+    			+"\nDate: " + LocalDate.now().toString()
+    			+"\nNumero de telephone: " + getNumTel()
+    			+"\nAbonnement: " + getTypeAbon()
+    			+"\nNumero de contrat: " + getNumContrat()
+    			+"\nDate debut de forfait: " + getDateContrat().toString()
+    			+"\nDate de la derniere recharge: " + this.derniereDateRecharge().toString()
     			+"\n");
     }
     

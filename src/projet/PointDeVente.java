@@ -48,8 +48,14 @@ public class PointDeVente
     }
     
     
+    
 
-    public String getNom() {
+    @Override
+	public String toString() {
+		return "PointDeVente [nom=" + nom + ", numero=" + numero + ", adresse=" + adresse + ", type=" + type + "]";
+	}
+
+	public String getNom() {
 		return nom;
 	}
 

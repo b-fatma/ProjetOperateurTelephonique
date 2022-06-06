@@ -67,12 +67,12 @@ public class Client_Libre extends Client
     public String Facture()
     {
     	return ("\n _______ FACTURE ______ \n"
-    			+"Date: " + LocalDate.now().toString()
-    			+"Numero de telephone: " + getNumTel()
-    			+"Abonnement: " + getTypeAbon()
-    			+"Numero de contrat: " + getNumContrat()
-    			+"Date debut de forfait: " + getDateContrat().toString()
-    			+"Montant a payer: " + this.calculerMontant() +"\n");
+    			+"\nDate: " + LocalDate.now().toString()
+    			+"\nNumero de telephone: " + getNumTel()
+    			+"\nAbonnement: " + getTypeAbon()
+    			+"\nNumero de contrat: " + getNumContrat()
+    			+"\nDate debut de forfait: " + getDateContrat().toString()
+    			+"\nMontant a payer: " + this.calculerMontant() +"\n");
     }
 
     public void appeler(int tarif, Appel appel)

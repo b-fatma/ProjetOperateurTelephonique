@@ -16,13 +16,29 @@ public class Operateur
     private HashMap<Wilaya,Float> PC;
     private ArrayList<Client> CL;
     private ArrayList<Blocage> Blocages;
+    private final static int tarif_int = 4;
+    private final static int tarif_ext = 4;
 
     public Operateur()
     {
 
     }
+    
+    
 
-    public Operateur(String nom)
+    public String getNom() {
+		return nom;
+	}
+
+
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+
+
+	public Operateur(String nom)
     {
         this.nom = nom;
         this.PV = new ArrayList<>();
@@ -41,7 +57,7 @@ public class Operateur
     public void afficherClients()
     {
     	for(Client c : CL)
-    		 System.out.println(c);
+    		System.out.println(c);
     }
     
     public void afficherPointsDeVente()
@@ -58,7 +74,10 @@ public class Operateur
     
     public void afficherPourcentages()
     {
-    	
+    	for(Wilaya w : PC.keySet())
+    	{
+    		System.out.println("Wilaya: " + w.toString() + " Pourcentage: " + PC.get(w)*100 +"%");
+    	}
     }
     
     
@@ -91,80 +110,81 @@ public class Operateur
     /* REVIEWED
      * Modifier le type d'un point de vente donne
      */
-    public void modifierTypePV(PointDeVente pointDeVente)
+    public void modifierTypePV(String nom)
     {
     	Iterator<PointDeVente> i = PV.iterator();
     	PointDeVente j = null;
     	while(i.hasNext())
     	{
     	    j = i.next();
-    	    if(j.egale(pointDeVente))
+    	    if(j.getNom().equals(nom))
     	    {
     	    	j.modifierType();
-    	    	System.out.println("Type modifiÃ© avec succÃ¨s.\n");
+    	    	System.out.println("Type modifié avec succès.\n");
     	    	return;
     	    }
     	}
-    	System.out.println("Echec! Point de vente non trouvÃ©.\n");
+    	System.out.println("Echec! Point de vente non trouvé.\n");
     }
     
     /* REVIEWED
      * Modifier le numero de telephone d un point de vente donne
      */
-    public void modifierNumPV(PointDeVente pointDeVente)
+    public void modifierNumPV(String nom)
     {
     	Iterator<PointDeVente> i = PV.iterator();
     	PointDeVente j = null;
     	while(i.hasNext())
     	{
     	    j = i.next();
-    	    if(j.egale(pointDeVente))
+    	    if(j.getNom().equals(nom))
     	    {
     	    	j.modifierNum();
-    	    	System.out.println("NumÃ©ro modifiÃ© avec succÃ¨s.\n");
+    	    	System.out.println("Numéro modifié avec succès.\n");
     	    	return;
     	    }
     	}
-    	System.out.println("Echec! Point de vente non trouvÃ©.\n");
+    	System.out.println("Echec! Point de vente non trouvé.\n");
     }
     
     /* REVIEWED
      * Modifier l adresse d un point de vente donne
      */
-    public void modifierAdressePV(PointDeVente pointDeVente)
+    public void modifierAdressePV(String nom)
     {
     	Iterator<PointDeVente> i = PV.iterator();
     	PointDeVente j = null;
     	while(i.hasNext())
     	{
     	    j = i.next();
-    	    if(j.egale(pointDeVente))
+    	    if(j.getNom().equals(nom))
     	    {
     	    	j.modifierAdresse();
-    	    	System.out.println("Adresse modifiÃ©e avec succÃ¨s.\n");
+    	    	System.out.println("Adresse modifiée avec succès.\n");
     	    	return;
     	    }
     	}
-    	System.out.println("Echec! Point de vente non trouvÃ©.\n");
+    	System.out.println("Echec! Point de vente non trouvé.\n");
     }
     
     /* REVIEWED
      * Supprimer un point de vente s il existe
      */
-    public void supprimerPV(PointDeVente pointDeVente)
+    public void supprimerPV(String nom)
     {
     	for(int i = 0; i < PV.size(); i++)
     	{
-    		if(PV.get(i).egale(pointDeVente))
+    		if(PV.get(i).getNom().equals(nom))
     		{
     			PV.remove(i);
-    			System.out.println("Point de vente supprimÃ© avec succÃ¨s.\n");
+    			System.out.println("Point de vente supprimé avec succès.\n");
     			return;
     		}
     	}
-    	System.out.println("Echec! Point de vente non trouvÃ©.\n"); 	
-    }    
-        /*
+    	System.out.println("Echec! Point de vente non trouvé.\n"); 	
+    }
+    
+    /*
      * Method qui retourne pointDeVente par nom
      */
     public PointDeVente nomToPointDeVente(String nom)
@@ -194,7 +214,7 @@ public class Operateur
     
     
     /* REVIEWED
-     * MÃ©thode qui retourne le client associÃ© Ã  un numÃ©ro donnÃ©
+     * Méthode qui retourne le client associé à un numéro donné
      */
     public Client numeroToClient(String numTel)
     {
@@ -209,7 +229,7 @@ public class Operateur
     
     /* REVIEWED
      * Demande de type 
-     * + crÃ©ation et saisie client 
+     * + création et saisie client 
      * + ajout client 
      */
     public void AjoutClientParSaisie()
@@ -237,7 +257,7 @@ public class Operateur
     
     
     /* REVIEWED
-     * verifier si un client est abonnÃ© chez cet operateur
+     * verifier si un client est abonné chez cet operateur
      */
     public boolean clientExiste(Client client)
     {
@@ -261,7 +281,7 @@ public class Operateur
     }
     
     /* REVIEWED
-     * Afficher les clients abonnÃ©s Ã  un type donnÃ©
+     * Afficher les clients abonnés à un type donné
      */
     
     public void afficherParType(Abonnement type)
@@ -274,7 +294,7 @@ public class Operateur
     }
     
     /* REVIEWED
-    * Afficher le numÃ©ro des clients bloquÃ©s, le motif et la date du blocage
+    * Afficher le numéro des clients bloqués, le motif et la date du blocage
     */
     public void afficherListeBlocages()
     {
@@ -284,7 +304,7 @@ public class Operateur
     
     
     /* REVIEWED
-     * La liste des numÃ©ros relancÃ©s pour paiement ou rechargement avec les dates de rappel
+     * La liste des numéros relancés pour paiement ou rechargement avec les dates de rappel
      */
     public void afficherListeRappels()
     {
@@ -301,7 +321,7 @@ public class Operateur
    
     
     /* REVIEWED 
-     * Afficher les appels d'un numero donnÃ© (sans prÃ©ciser la durÃ©e)
+     * Afficher les appels d'un numero donné (sans préciser la durée)
      */
     public void afficherAppels(String numero)
     {
@@ -313,7 +333,7 @@ public class Operateur
     }
     
     /* REVIEWED 
-     * Afficher les appels entre 2 dates d'un numero donnÃ© 
+     * Afficher les appels entre 2 dates d'un numero donné 
      */
     public void afficherAppels(String numero, LocalDate d1, LocalDate d2)
     {
@@ -336,12 +356,12 @@ public class Operateur
     	else
     	{
     		CL.remove(c);
-    		System.out.println("Client supprimÃ© avec succÃ¨s.");
+    		System.out.println("Client supprimé avec succès.");
     	}
     }
      
     /*
-     * Afficher les inforomations d'un numÃ©ro donnÃ©
+     * Afficher les inforomations d'un numéro donné
      */
     public void afficherInfoNum(String numero)
     {
@@ -352,7 +372,7 @@ public class Operateur
     }
     
     /*
-     * Afficher tous les numÃ©ros arrivÃ©s Ã  Ã©chÃ©ance de paiement
+     * Afficher tous les numéros arrivés à échéance de paiement
      */
     public void afficherNumeros_echeance()
     {
@@ -361,7 +381,7 @@ public class Operateur
     	{
     		if(c.echeanceDePaiement())
     		{
-    			System.out.println("\nNumero NÂ°" + cmp + ": " + c.getNumTel());	
+    			System.out.println("\nNumero N°" + cmp + ": " + c.getNumTel());	
     		}
     	}
     }
@@ -381,7 +401,7 @@ public class Operateur
     }
     
     /*
-     * Etablir facture pour un numÃ©ro donnÃ©
+     * Etablir facture pour un numéro donné
      */
     public void etablirFacture(String num)
     {
@@ -392,7 +412,7 @@ public class Operateur
     }
     
     /*
-     * Relancer les numÃ©ros pour les rechargements/ paiements
+     * Relancer les numéros pour les rechargements/ paiements
      */
     public void relancerNumeros()
     {
@@ -401,7 +421,7 @@ public class Operateur
     		if(c.instanceDePaiement() && c.getDatesRappels().size() < 3)
     		{
     			c.relancer();
-    			System.out.println("Numero " + c.getNumTel() + " relancÃ©");
+    			System.out.println("Numero " + c.getNumTel() + " relancé");
     		}
     	}
     }
@@ -454,10 +474,9 @@ public class Operateur
 		return stringToDate(dateSaisie);
 	}  
 	
+	/* GESTION DES APPELS */
 	
-/* GESTION DES APPELS */
-	
-	public void ajouterAppelEntrant(String num)
+	public void ajouterAppelSortant(String num)
 	{
 		Client c = this.numeroToClient(num);
 		if(c != null)
@@ -481,7 +500,7 @@ public class Operateur
 			System.out.println("Ce numéro n existe pas!");
 	}
 	
-	public void ajouterAppelSortant(String num)
+	public void ajouterAppelEntrant(String num)
 	{
 		Client c = this.numeroToClient(num);
 		if(c != null)

@@ -144,10 +144,11 @@ public class Adresse
     
     public boolean egale(Adresse a)
     {
-    	return(CP == a.CP
+    	/*return(CP == a.CP
     			&& nomRue.equalsIgnoreCase(a.getNomRue())
     			&& ville.equalsIgnoreCase(a.getVille())
-    			&& wilaya.equals(a.getWilaya()));			
+    			&& wilaya.equals(a.getWilaya()));*/
+    	return (this.toString().equalsIgnoreCase(a.toString()));
     }
 
 }
