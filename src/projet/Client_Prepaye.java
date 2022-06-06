@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashMap;
 
+import projet.Appel.TypeAppel;
+
 public class Client_Prepaye extends Client
 {
 
@@ -71,12 +73,14 @@ public class Client_Prepaye extends Client
     
     public void appeler(int tarif, Appel appel)
     {
+    	appel.setType(TypeAppel.SORTANT);
     	solde -= appel.calculerMontant(tarif);
     	this.getAppels().add(appel);
     }
     
     public void recevoirAppel(Appel appel)
     {
+    	appel.setType(TypeAppel.ENTRANT);
     	this.getAppels().add(appel);
     }
    

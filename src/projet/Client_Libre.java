@@ -2,6 +2,8 @@ package projet;
 
 import java.time.LocalDate;
 
+import projet.Appel.TypeAppel;
+
 public class Client_Libre extends Client
 {
 	private static final int duree = 2;
@@ -75,15 +77,16 @@ public class Client_Libre extends Client
 
     public void appeler(int tarif, Appel appel)
     {
+    	appel.setType(TypeAppel.SORTANT);
     	montant += appel.calculerMontant(tarif);
     	this.getAppels().add(appel);
     }
     
     public void recevoirAppel(Appel appel)
     {
+    	appel.setType(TypeAppel.ENTRANT);
     	this.getAppels().add(appel);
     }
-
 
 
 }

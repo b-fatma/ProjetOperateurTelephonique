@@ -4,14 +4,17 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 
 public class Appel
 {
+	enum TypeAppel {ENTRANT, SORTANT};
     private String numero;
     private LocalDate date;
     private LocalTime heure;
     private Duration duree;
+    private TypeAppel type;
 
     public Appel() {}
 
@@ -22,8 +25,18 @@ public class Appel
         this.heure = heure;
         this.duree = duree;
     }
+    
+    
 
-    public String getNumero() {
+    public TypeAppel getType() {
+		return type;
+	}
+
+	public void setType(TypeAppel type) {
+		this.type = type;
+	}
+
+	public String getNumero() {
         return numero;
     }
 
@@ -76,6 +89,17 @@ public class Appel
         return (this.date.isAfter(d1)
         		&& this.date.isBefore(d2));
     }
+	
+	public void saisir()
+	{
+	    Scanner scan=new Scanner(System.in);
+		
+	    this.numero=PointDeVente.saisirNum();
+	    System.out.print("Durée en secondes: ");
+	    this.duree=Duration.ofSeconds(scan.nextLong());
+	    this.date=LocalDate.now();
+	    this.heure=LocalTime.now();	
+	}
 
 
 }

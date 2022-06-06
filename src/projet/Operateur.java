@@ -453,5 +453,46 @@ public class Operateur
 		}
 		return stringToDate(dateSaisie);
 	}  
+	
+	
+/* GESTION DES APPELS */
+	
+	public void ajouterAppelEntrant(String num)
+	{
+		Client c = this.numeroToClient(num);
+		if(c != null)
+		{
+			Appel appel = new Appel();
+			appel.saisir();
+			
+			Client destinataire = this.numeroToClient(c.getNumTel());
+			if(destinataire != null)
+			{
+				c.appeler(tarif_int, appel);
+				Appel appel2 = new Appel(c.getNumTel(), appel.getDate(), appel.getHeure(), appel.getDuree());
+				destinataire.recevoirAppel(appel2);
+			}
+			else
+			{
+				c.appeler(tarif_ext, appel);
+			}	
+		}
+		else
+			System.out.println("Ce numéro n existe pas!");
+	}
+	
+	public void ajouterAppelSortant(String num)
+	{
+		Client c = this.numeroToClient(num);
+		if(c != null)
+		{
+			Appel appel = new Appel();
+			appel.saisir();
+			
+			c.recevoirAppel(appel);
+		}
+		else
+			System.out.println("Ce numéro n existe pas!");
+	}
 }
 
