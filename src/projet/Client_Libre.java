@@ -46,14 +46,9 @@ public class Client_Libre extends Client
         this.montant = 0;
     }
 
-    public void appeler()
+    public float calculerMontant()
     {
-
-    }
-
-    public void recevoirAppel()
-    {
-
+    	return ((getForfaitfixe()+this.getMontant())*(1+getTVA()));
     }
     
     public boolean echeanceDePaiement()
@@ -75,7 +70,18 @@ public class Client_Libre extends Client
     			+"Abonnement: " + getTypeAbon()
     			+"Numero de contrat: " + getNumContrat()
     			+"Date debut de forfait: " + getDateContrat().toString()
-    			+"Montant a payer: " + montant +"\n");
+    			+"Montant a payer: " + this.calculerMontant() +"\n");
+    }
+
+    public void appeler(int tarif, Appel appel)
+    {
+    	montant += appel.calculerMontant(tarif);
+    	this.getAppels().add(appel);
+    }
+    
+    public void recevoirAppel(Appel appel)
+    {
+    	this.getAppels().add(appel);
     }
 
 

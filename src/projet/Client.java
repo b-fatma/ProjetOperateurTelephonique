@@ -239,9 +239,9 @@ public abstract class Client
     
     
 
-    /*public abstract void appeler();
+	public abstract void appeler(int tarif, Appel appel);
 
-    public abstract void recevoirAppel();*/
+    public abstract void recevoirAppel(Appel appel);
 
     public abstract boolean echeanceDePaiement();
     

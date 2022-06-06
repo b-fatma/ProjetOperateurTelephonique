@@ -68,5 +68,16 @@ public class Client_Prepaye extends Client
     			+"Date de la derniere recharge: " + this.derniereDateRecharge().toString()
     			+"\n");
     }
+    
+    public void appeler(int tarif, Appel appel)
+    {
+    	solde -= appel.calculerMontant(tarif);
+    	this.getAppels().add(appel);
+    }
+    
+    public void recevoirAppel(Appel appel)
+    {
+    	this.getAppels().add(appel);
+    }
    
 }

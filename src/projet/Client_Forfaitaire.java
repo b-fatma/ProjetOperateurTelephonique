@@ -67,6 +67,17 @@ public class Client_Forfaitaire extends Client
     			+"Date debut de forfait: " + getDateContrat().toString()
     			+"Montant a payer: " + montant_initial +"\n");
     }
+    
+    public void appeler(int tarif, Appel appel)
+    {
+    	montant -= appel.calculerMontant(tarif);
+    	this.getAppels().add(appel);
+    }
+    
+    public void recevoirAppel(Appel appel)
+    {
+    	this.getAppels().add(appel);
+    }
 
 
 
