@@ -17,6 +17,7 @@ public abstract class Client
     protected ArrayList<Appel> appels;
     protected ArrayList<SMS> SMS;
     protected ArrayList<LocalDate> datesRappels;
+    protected Bonus bonus;
 
 
     public Client() 
@@ -25,6 +26,7 @@ public abstract class Client
         appels = new ArrayList<>();
         SMS = new ArrayList<>();
         datesRappels= new ArrayList<>();
+	this.bonus=null;
     }
 
     public Client(String numTel, String numContrat, String nom, String prenom,LocalDate dateContrat2, Adresse adresse, String adresseMail)
@@ -40,6 +42,7 @@ public abstract class Client
         appels = new ArrayList<>();
         SMS = new ArrayList<>();
         datesRappels= new ArrayList<>();
+	this.bonus=null;
     }
     
     
@@ -100,6 +103,12 @@ public abstract class Client
 
 	public void setDateContrat(LocalDate dateContrat) {
 		this.dateContrat = dateContrat;
+	}
+	public void setBonus(Bonus bonus) {
+		this.bonus = bonus;
+	}
+	public Bonus getBonus() {
+		return this.bonus;
 	}
 
 	public Adresse getAdresse() {
@@ -184,7 +193,7 @@ public abstract class Client
     
     @Override
 	public String toString() {
-		return "Numero de telephone: " + numTel + ", Numero de contrat: " + numContrat + ", Nom: " + nom + ", Prénom: " + prenom
+		return "Numero de telephone: " + numTel + ", Numero de contrat: " + numContrat + ", Nom: " + nom + ", PrÃ©nom: " + prenom
 				+ ", Adresse mail: " + adresseMail + ", Date de fin de contrat: " + dateContrat + ", Adresse: " + adresse + ", Etat: "
 				+ etat + ", Abonnement: " + typeAbon + "]";
 	}
@@ -199,7 +208,7 @@ public abstract class Client
 		int cmp = 1;
 		for(LocalDate d : this.datesRappels)
 		{
-			System.out.println("Rappel N°" + cmp + ": " + d.toString()); 
+			System.out.println("Rappel NÂ°" + cmp + ": " + d.toString()); 
 			cmp++;
 		}
 	}
@@ -210,12 +219,12 @@ public abstract class Client
 		int cmp = 1;
 		for(Appel a : this.appels)
 		{
-			System.out.print("Appel N°" + cmp + ": ");
+			System.out.print("Appel NÂ°" + cmp + ": ");
 			a.afficher();
 			duree += a.getDuree().getSeconds();
 			cmp++;
 		}
-		System.out.println("\nLa durée cumulée: " + Duration.ofSeconds(duree).toString());
+		System.out.println("\nLa durÃ©e cumulÃ©e: " + Duration.ofSeconds(duree).toString());
 	}
 	
 	public void afficherAppels(LocalDate d1, LocalDate d2)
@@ -226,13 +235,13 @@ public abstract class Client
 		{
 			if(a.appartient(d1, d2))
 			{
-				System.out.print("Appel N°" + cmp + ": ");
+				System.out.print("Appel NÂ°" + cmp + ": ");
 				a.afficher();
 				duree += a.getDuree().getSeconds();
 				cmp++;
 			}
 		}
-		System.out.println("\nLa durée cumulée: " + Duration.ofSeconds(duree).toString());
+		System.out.println("\nLa durÃ©e cumulÃ©e: " + Duration.ofSeconds(duree).toString());
 	}
     
     
